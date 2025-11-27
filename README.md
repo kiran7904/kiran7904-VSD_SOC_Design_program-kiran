@@ -117,20 +117,17 @@ Final routing-related outputs are available in:
 `submission/OpenLane/results/final/`
 # 🖼️ 7. Magic Layout Screenshots
 
-### Full Layout
-![Full Layout](/home/vscode/Desktop/OpenLane/designs/spm/submission/images/magic_layout_full.png)
+![Full Layout](submission/images/magic_layout_full.png)
 
-### Full Zoom
-![Full Zoom](/home/vscode/Desktop/OpenLane/designs/spm/submission/images/magic_layout_full_zoom.png)
+![Full Zoom](submission/images/magic_layout_full_zoom.png)
 
-### Standard Cell Zoom
-![Standard Cell Zoom](/home/vscode/Desktop/OpenLane/designs/spm/submission/images/magic_layout_zoom.png)
+![Standard Cell Zoom](submission/images/magic_layout_zoom.png)
 
-### Magic DRC Menu
-![Magic DRC Menu](/home/vscode/Desktop/OpenLane/designs/spm/submission/images/magic_drc_menu.png)
+![Magic DRC Menu](submission/images/magic_drc_menu.png)
 
-### TKCON DRC Check
-![TKCON DRC Check](/home/vscode/Desktop/OpenLane/designs/spm/submission/images/tkcon_drc_check.png)
+![TKCON DRC Check](submission/images/tkcon_drc_check.png)
+
+
 
 
 # 🧪 8. DRC (Design Rule Check)
@@ -140,6 +137,7 @@ Magic DRC was performed on the final layout.
 **Final Result:**  
 **Total DRC errors = 0**
 
+![DRC Reports](submission/images/reports_directory.png)
 
 
 All DRC reports are stored in:
@@ -159,7 +157,7 @@ It checks for:
 **CVC passed successfully.**
 
 ### CVC Screenshot
-![CVC Report](images/cvc_report.png)
+![CVC Report](submission/images/cvc_report.png)
 
 
 Static Timing Analysis was performed on the final routed design.
@@ -167,10 +165,9 @@ Static Timing Analysis was performed on the final routed design.
 Both **setup** and **hold** timing checks were MET.
 
 ### STA Slack Terminal
-![STA Slack Terminal](/home/vscode/Desktop/OpenLane/designs/spm/submission/images/sta_summary_terminal-slack.png)
+![STA Summary File](submission/images/sta_summary_file.png)
 
-### STA Summary File
-![STA Summary File](/home/vscode/Desktop/OpenLane/designs/spm/submission/images/sta_summary_file.png)
+![STA Slack Terminal](submission/images/sta_summary_terminal-slack.png)
 
 
 # 🗂️ 11. Final Signoff Reports
@@ -186,7 +183,7 @@ The final signoff stage generated all required verification outputs, including:
 - Additional OpenLane multi-corner analysis (mca) folders  
 
 ### Signoff Reports
-![Signoff Reports](/home/vscode/Desktop/OpenLane/designs/spm/submission/images/signoff_reports.png)
+![Signoff Reports![Signoff Reports](submission/images/signoff_reports.png)
 
 
 
