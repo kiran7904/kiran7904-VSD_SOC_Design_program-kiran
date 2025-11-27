@@ -116,15 +116,15 @@ Final routing-related outputs are available in:
 
 `submission/OpenLane/results/final/`
 # 🖼️ 7. Magic Layout Screenshots
-
+Full Layout
 ![Full Layout](submission/images/magic_layout_full.png)
-
+Full zoom
 ![Full Zoom](submission/images/magic_layout_full_zoom.png)
-
+Standard zoom
 ![Standard Cell Zoom](submission/images/magic_layout_zoom.png)
-
+DRC Menu
 ![Magic DRC Menu](submission/images/magic_drc_menu.png)
-
+TKCON DRC check
 ![TKCON DRC Check](submission/images/tkcon_drc_check.png)
 
 
