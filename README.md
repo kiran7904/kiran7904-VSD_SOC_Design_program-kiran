@@ -1,206 +1,154 @@
-# Digital VLSI SoC Design and Planning – Final Project Report  
-## **Design Name:** `spm`  
-## **Author:** Kiran kumar siripurapu 
-## **PDK:** Sky130A  
-## **Flow Used:** OpenLane (RTL → GDSII)**
+# 💾 Digital VLSI SoC Design and Planning – Final Project Report
+
+## ⚙️ Design Details
+| Attribute | Value |
+| :--- | :--- |
+| **Design Name** | `spm` (small processing module) |
+| **Author** | Kiran kumar siripurapu |
+| **PDK** | Sky130A (Open-Source) |
+| **Flow Used** | OpenLane (RTL → GDSII) |
+| **Environment** | GitHub Codespaces |
 
 ---
 
-## 📘 Overview
+## 📘 Project Overview
 
-This project implements the `spm` (small processing module) design using the OpenLane RTL-to-GDSII flow on the Sky130A open-source PDK.  
-The goal was to take the given RTL and harden it into a complete ASIC layout, ending with a clean GDSII.
+This project successfully implemented the **`spm`** (small processing module) design using the **OpenLane RTL-to-GDSII flow** on the **Sky130A open-source PDK**. The primary objective was to execute a full ASIC physical design flow and generate a signoff-clean **GDSII layout**.
 
-This report includes:
-- RTL  
-- Synthesis results  
-- OpenLane logs  
-- Magic screenshots  
-- DRC, STA, CVC results  
-- Final GDS & DEF  
+The entire flow was completed inside GitHub Codespaces, resulting in a functionally and physically verified design.
 
-The entire flow was completed inside GitHub Codespaces.
-## 📘 Overview
-
-This project implements the **`spm`** (small processing module) design using the **OpenLane RTL-to-GDSII flow** on the **Sky130A open-source PDK**.  
-The objective was to perform a full ASIC physical design flow and generate a signoff-clean **GDSII layout**.
-
-The project includes all required deliverables:
-- RTL  
-- Synthesis reports  
-- OpenLane logs & results  
-- GDSII & DEF  
-- DRC, STA, and CVC signoff  
-- Magic screenshots  
-- Complete physical verification  
+### 🎯 Key Deliverables
+* RTL (`spm.v`)
+* Synthesis Reports (Area, Timing)
+* Complete OpenLane Logs & Results
+* Final GDSII & DEF Layout Files
+* **Signoff:** DRC, STA, and CVC Verification
 
 ---
-# 🧩 1. RTL Design
 
-The RTL file used:
+## 1. 🧩 RTL Design
 
-`/home/vscode/Desktop/OpenLane/designs/spm/submission/RTL/spm.v`
+The original RTL file was used without modification:
 
+> `/home/vscode/Desktop/OpenLane/designs/spm/submission/RTL/spm.v`
 
-No RTL modifications were required for this project.
-# ⚙️ 2. Synthesis (Yosys)
+---
 
-Synthesis was completed successfully using Yosys inside the OpenLane flow.
+## 2. 🚀 OpenLane Flow Summary
 
-The synthesis stage generated:
-- Synthesized netlist  
-- Area reports  
-- Timing reports  
-- SDF (Standard Delay Format)  
-- Cell usage statistics  
+The complete RTL-to-GDSII flow was executed successfully, with all stages completing without fatal errors and passing final signoff checks.
 
-All synthesis outputs are stored in:  `submission/Synthesis/`
+| OpenLane Stage | Status | Details |
+| :--- | :--- | :--- |
+| **Synthesis** | ✔ Done | RTL transformed to gate-level netlist (Yosys) |
+| **Floorplan** | ✔ Done | Core boundary, IO pins, and PDN generated |
+| **Placement** | ✔ Done | No congestion issues reported |
+| **Clock Tree Synthesis (CTS)** | ✔ Done | Balanced clock tree generated |
+| **Routing** | ✔ Done | Global and detailed routing completed (TritonRoute) |
+| **GDSII Generation** | ✔ Done | Final fabrication-ready layout |
+| **DRC (Magic)** | **✔ 0 Errors** | Design Rule Check Passed |
+| **STA (OpenSTA)** | **✔ Slack Met** | Setup & Hold Timing Passed |
+| **CVC (Netlist Check)** | **✔ Passed** | Connectivity Verified |
 
+> All OpenLane results, reports, and logs are located in: `submission/OpenLane/`
 
-The synthesis stage completed successfully and produced:
-- Synthesized netlist  
-- Area and timing reports  
-- SDF (Standard Delay Format)
+---
 
-# 🧱 3. OpenLane Flow Summary
+## 3. 📝 Synthesis & Physical Design
 
-The entire OpenLane RTL-to-GDSII flow was successfully executed for the `spm` design.
-Each stage completed without fatal errors, and final signoff checks passed.
+### 3.1. Synthesis (Yosys)
+Synthesis generated the required netlist, area reports, and timing data.
+* **Outputs Location:** `submission/Synthesis/`
 
-### ✔ Flow Stages Completed
+### 3.2. Floorplan & Placement
+The floorplan included automatic Power Distribution Network (PDN) generation, IO placement, tapcell, and decap insertion. Placement was successful with no reported congestion.
 
-| OpenLane Stage | Status |
-|----------------|--------|
-| Synthesis | ✔ Done |
-| Floorplan | ✔ Done |
-| Placement | ✔ Done |
-| Clock Tree Synthesis (CTS) | ✔ Done |
-| Routing | ✔ Done |
-| GDSII Generation | ✔ Done |
-| DRC (Magic) | ✔ 0 Errors |
-| STA (OpenSTA) | ✔ Slack Met |
-| CVC (Connectivity Check) | ✔ Passed |
+### 3.3. Clock Tree Synthesis (CTS)
+A balanced clock tree was inserted to meet timing requirements.
+* **Reports Location:** `submission/OpenLane/reports/placement/` and `submission/OpenLane/reports/cts/`
 
-All OpenLane-generated files (DEF, GDS, results, reports, logs) are stored under:`submission/OpenLane/`
+### 3.4. Routing
+Routing was completed using FastRoute and TritonRoute, producing the final routed DEF and parasitic extraction files (SPEF).
+* **Final Outputs Location:** `submission/OpenLane/results/final/`
 
-# 🗺️ 4. Floorplan
+---
 
-The floorplan stage automatically generated:
+## 4. 🖼️ Magic Layout Screenshots
 
-- Core boundary  
-- IO pin placement  
-- Power Distribution Network (PDN)  
-- Standard cell rows  
-- Tapcells and decap insertion  
+| Description | Image |
+| :--- | :--- |
+| **Full Layout** | ![Full Layout](submission/images/magic_layout_full.png) |
+| **Full Zoom** | ![Full Zoom](submission/images/magic_layout_full_zoom.png) |
+| **Standard Cell Zoom** | ![Standard Cell Zoom](submission/images/magic_layout_zoom.png) |
 
-Floorplan reports are available in:
+---
 
-`submission/OpenLane/reports/floorplan/`
-# ⚙️ 5. Placement & Clock Tree Synthesis (CTS)
+## 5. ✅ Final Signoff Verification
 
-The placement stage completed successfully with no congestion issues.  
-Standard cells were placed and legalized across the floorplan.
+The design passed all necessary signoff checks, confirming it is ready for tapeout.
 
-Clock Tree Synthesis (CTS) inserted buffers and generated a balanced clock tree for timing closure.
+### 5.1. 🧪 DRC (Design Rule Check)
+Magic was used for the final DRC check on the GDSII layout.
+* **Result:** **Total DRC errors = 0**
+* **Reports Location:** `submission/OpenLane/reports/signoff/drc.rpt`
+* **Screenshot:** ![TKCON DRC Check](submission/images/tkcon_drc_check.png)
 
-All related reports are stored in:
+### 5.2. ⏱️ STA (Static Timing Analysis)
+OpenSTA verified the timing constraints on the post-route design.
+* **Result:** Both **Setup** and **Hold** checks were **MET**.
+* **Reports Location:** `submission/OpenLane/reports/signoff/`
+* **Screenshot:** ![STA Slack Terminal](submission/images/sta_summary_terminal-slack.png)
 
-- `submission/OpenLane/reports/placement/`
-- `submission/OpenLane/reports/cts/`
-# 🔧 6. Routing
+### 5.3. 🧬 CVC (Connectivity Verification Check)
+CVC verified the consistency between the extracted layout netlist and the original synthesized netlist.
+* **Result:** **CVC Passed successfully.**
+* **Reports Location:** `submission/OpenLane/reports/signoff/spm.rpt`
+* **Screenshot:** ![CVC Report](submission/images/cvc_report.png)
 
-Routing was completed using FastRoute and TritonRoute.  
-The final routed DEF, parasitic extraction files, and timing data were generated successfully.
+---
 
-Final routing-related outputs are available in:
-
-`submission/OpenLane/results/final/`
-# 🖼️ 7. Magic Layout Screenshots
-Full Layout
-![Full Layout](submission/images/magic_layout_full.png)
-Full zoom
-![Full Zoom](submission/images/magic_layout_full_zoom.png)
-Standard zoom
-![Standard Cell Zoom](submission/images/magic_layout_zoom.png)
-DRC Menu
-![Magic DRC Menu](submission/images/magic_drc_menu.png)
-TKCON DRC check
-![TKCON DRC Check](submission/images/tkcon_drc_check.png)
-
-
-
-
-# 🧪 8. DRC (Design Rule Check)
-
-Magic DRC was performed on the final layout.
-
-**Final Result:**  
-**Total DRC errors = 0**
-
-![DRC Reports](submission/images/reports_directory.png)
-
-
-All DRC reports are stored in:
-
-`submission/Physical_Verification/`
-# 🧬 9. CVC (Connectivity Verification Check)
-
-CVC (Circuit Validity Checker) was run on the final extracted layout.  
-It checks for:
-
-- Shorts  
-- Opens  
-- Floating nodes  
-- Incorrect connections  
-- Power/ground issues  
-
-**CVC passed successfully.**
-
-### CVC Screenshot
-![CVC Report](submission/images/cvc_report.png)
-
-
-Static Timing Analysis was performed on the final routed design.
-
-Both **setup** and **hold** timing checks were MET.
-
-### STA Slack Terminal
-![STA Summary File](submission/images/sta_summary_file.png)
-
-![STA Slack Terminal](submission/images/sta_summary_terminal-slack.png)
-
-
-# 🗂️ 11. Final Signoff Reports
-
-The final signoff stage generated all required verification outputs, including:
-
-- DRC reports  
-- CVC reports  
-- STA reports  
-- SPEF (parasitics)  
-- SDF  
-- Extraction feedback  
-- Additional OpenLane multi-corner analysis (mca) folders  
-
-### Signoff Reports
-![Signoff Reports![Signoff Reports](submission/images/signoff_reports.png)
-
-
-
-All signoff outputs are stored in:
-
-`submission/Physical_Verification/`
-# 🧾 12. Final GDS & DEF
+## 6. 🧾 Final GDSII & DEF
 
 The final fabrication-ready layout files are included in the submission.
 
-### GDSII File:
-`submission/OpenLane/gds/spm.gds`
+| File Type | Path |
+| :--- | :--- |
+| **GDSII File** | `submission/OpenLane/gds/spm.gds` |
+| **DEF File** | `submission/OpenLane/def/spm.def` |
 
-### DEF File:
-`submission/OpenLane/def/spm.def`
+---
 
-These files represent the final placed, clocked, and routed physical layout of the `spm` design.
+## 7. 🔗 Clickable Report & File Links
+
+For quick access, all major reports and output files are linked below (relative to the repository root).
+
+### 🔹 Core Layout Files
+| File | Link |
+| :--- | :--- |
+| **Final GDSII** | [submission/OpenLane/gds/spm.gds](submission/OpenLane/gds/spm.gds) |
+| **Final DEF** | [submission/OpenLane/def/spm.def](submission/OpenLane/def/spm.def) |
+| **RTL Source** | [submission/RTL/spm.v](submission/RTL/spm.v) |
+
+### 🔹 Signoff Reports (Post-Route)
+| Report Type | File | Link |
+| :--- | :--- | :--- |
+| **DRC Report** | `drc.rpt` | [Link](submission/OpenLane/reports/signoff/drc.rpt) |
+| **STA Summary** | `31-rcx_sta.summary.rpt` | [Link](submission/OpenLane/reports/signoff/31-rcx_sta.summary.rpt) |
+| **STA Max (Setup)** | `31-rcx_sta.max.rpt` | [Link](submission/OpenLane/reports/signoff/31-rcx_sta.max.rpt) |
+| **STA Min (Hold)** | `31-rcx_sta.min.rpt` | [Link](submission/OpenLane/reports/signoff/31-rcx_sta.min.rpt) |
+| **CVC Report** | `spm.rpt` | [Link](submission/OpenLane/reports/signoff/spm.rpt) |
+| **IR Drop (VPWR)** | `32-irdrop-VPWR.rpt` | [Link](submission/OpenLane/reports/signoff/32-irdrop-VPWR.rpt) |
+
+### 🔹 Synthesis Reports
+| Report Type | File | Link |
+| :--- | :--- | :--- |
+| **Area Report** | `1-synthesis.AREA_0.stat.rpt` | [Link](submission/Synthesis/1-synthesis.AREA_0.stat.rpt) |
+| **STA Summary** | `2-syn_sta.summary.rpt` | [Link](submission/Synthesis/2-syn_sta.summary.rpt) |
+| **SDF File** | `spm.sdf` | [Link](submission/Synthesis/spm.sdf) |
+
+---
+
+## 8. 📦 Submission Folder Structure
 
 # 📦 13. Submission Folder Structure
 
