@@ -1,146 +1,114 @@
-# Digital VLSI SoC Design and Planning – Final Project Report
-
-**Design:** `spm` (Small Processing Module)  
+# Digital VLSI SoC Design and Planning – Final Project Report  
+**Design Name:** `spm` – Small Processing Module  
 **Author:** Kiran Kumar Siripurapu  
 **PDK:** Skywater 130nm (sky130A)  
-**Flow:** OpenLane 2 – Full RTL → GDSII  
+**Tool Flow:** OpenLane 2 – Complete RTL to GDSII  
 **Environment:** GitHub Codespaces  
 
-**Final Result → 0 DRC | Timing Met | CVC Passed | Tapeout-Ready GDSII**
+**Final Signoff:** DRC = 0 Errors | STA = Timing Met | CVC = Passed | GDSII Ready  
 
 ---
 
-### Project Overview & Achievements
-
-> Successfully completed **full open-source ASIC flow** from RTL to signoff-clean GDSII  
-> All tools: Yosys → OpenROAD → Magic → OpenSTA → CVC  
-> Entire flow executed inside GitHub Codespaces  
-
-**All Signoff Checks Passed**
+### 1. RTL Source File
+| Explanation                                      | File / View                                      |
+|--------------------------------------------------|--------------------------------------------------|
+| Original Verilog RTL used without any changes    | [submission/RTL/spm.v](submission/RTL/spm.v)     |
 
 ---
 
-### 1. RTL Source
-
-> File: `submission/RTL/spm.v`  
-> → [View spm.v](submission/RTL/spm.v)
-
----
-
-### 2. Synthesis Reports Directory
-
-> ![OpenLane run reports directory view](submission/images/OpenLane%20run%20reports%20directory%20view.png)
-
-> Key Reports:  
-> → [Area Report](submission/Synthesis/1-synthesis.AREA_0.stat.rpt)  
-> → [Timing Summary](submission/Synthesis/2-syn_sta.summary.rpt)
+### 2. OpenLane Reports Directory Structure
+| Explanation                                               | Screenshot                                              |
+|-----------------------------------------------------------|---------------------------------------------------------|
+| Complete OpenLane run reports directory after successful flow | ![OpenLane reports directory](submission/images/OpenLane%20run%20reports%20directory%20view.png) |
 
 ---
 
-### 3. Reports Folder Structure
-
-> ![Reports directory](submission/images/reports_directory.png)
-
-> ![Signoff reports folder](submission/images/signoff_reports.png)
-
----
-
-### 4. Final Layout Views – Magic VLSI
-
-> **Full Chip Layout**  
-> ![magic_layout_full.png](submission/images/magic_layout_full.png)
-
-> **Zoomed-Out View**  
-> ![magic_layout_full_zoom.png](submission/images/magic_layout_full_zoom.png)
-
-> **Standard Cell Close-Up**  
-> ![magic_layout_zoom.png](submission/images/magic_layout_zoom.png)
-
-> **Custom ALU Block (Zoomed-Out)**  
-> ![Custom ALU layout (zoomed-out view)](submission/images/Custom%20ALU%20layout%20(zoomed-out%20view).png)
-
-> **Extraction Log + ALU Layout Side-by-Side**  
-> ![Extraction log + simple_alu layout](submission/images/Extraction%20log%20+%20simple_alu%20layout%20(Magic%20side-by-side).png)
+### 3. Final Layout Views in Magic VLSI
+| Explanation                                               | Layout Screenshot                                       |
+|-----------------------------------------------------------|---------------------------------------------------------|
+| Full final chip layout after routing                      | ![Full Layout](submission/images/magic_layout_full.png) |
+| Zoomed-out view of entire die                             | ![Zoomed-out](submission/images/magic_layout_full_zoom.png) |
+| Close-up view of standard cells and routing               | ![Standard cell zoom](submission/images/magic_layout_zoom.png) |
+| Custom ALU block layout (zoomed-out)                      | ![Custom ALU](submission/images/Custom%20ALU%20layout%20(zoomed-out%20view).png) |
+| Parasitic extraction log + simple ALU layout side-by-side | ![Extraction + ALU](submission/images/Extraction%20log%20+%20simple_alu%20layout%20(Magic%20side-by-side).png) |
 
 ---
 
-### 5. Design Rule Check (DRC) – Magic
+### 4. Design Rule Check (DRC) – Magic VLSI  
+**Result: 0 Violations → DRC Clean**
 
-> **Result: 0 DRC Violations**
+| Explanation                                               | Screenshot                                              |
+|-----------------------------------------------------------|---------------------------------------------------------|
+| Magic DRC menu opened                                     | ![DRC menu](submission/images/magic_drc_menu.png)       |
+| DRC executed in tkcon console – showing 0 errors          | ![DRC 0 errors](submission/images/tkcon_drc_check.png)  |
+| Final confirmation: Zero DRC violations                   | ![Zero DRC](submission/images/zero_drc.png)             |
 
-> ![Magic DRC menu](submission/images/magic_drc_menu.png)
-
-> ![DRC Check – 0 Errors](submission/images/tkcon_drc_check.png)
-
-> ![Final Zero DRC](submission/images/zero_drc.png)
-
-> **DRC Report** → [drc.rpt](submission/OpenLane/reports/signoff/drc.rpt)
-
----
-
-### 6. Static Timing Analysis (STA) – OpenSTA
-
-> **Result: Setup & Hold Met – Positive Slack**
-
-> ![STA Terminal – Positive Slack](submission/images/sta_summary_terminal-slack.png)
-
-> ![STA Summary File](submission/images/sta_summary_file.png)
-
-> **Key STA Reports**  
-> → [Summary](submission/OpenLane/reports/signoff/31-rcx_sta.summary.rpt)  
-> → [Setup](submission/OpenLane/reports/signoff/31-rcx_sta.max.rpt)  
-> → [Hold](submission/images/31-rcx_sta.min.rpt)
+**DRC Report:** [drc.rpt](submission/OpenLane/reports/signoff/drc.rpt)
 
 ---
 
-### 7. Connectivity Verification Check (CVC)
+### 5. Static Timing Analysis (STA) – OpenSTA  
+**Result: Setup & Hold Met – Positive Slack**
 
-> **Result: Passed – Layout matches netlist**
+| Explanation                                               | Screenshot / Report                                     |
+|-----------------------------------------------------------|---------------------------------------------------------|
+| Terminal output showing positive setup & hold slack       | ![STA positive slack](submission/images/sta_summary_terminal-slack.png) |
+| STA summary report file content                           | ![STA file](submission/images/sta_summary_file.png)     |
 
-> ![CVC Report – Passed](submission/images/cvc_report.png)
-
-> **CVC Report** → [spm.rpt](submission/OpenLane/reports/signoff/spm.rpt)
-
----
-
-### 8. Bonus: Complete LibreLane Full-Chip Scan
-
-> ![Complete_librelane_scan.jpg](submission/images/Complete_librelane_scan.jpg)
-
----
-
-### 9. Final Tapeout Deliverables
-
-> **GDSII File**  
-> → [spm.gds](submission/OpenLane/gds/spm.gds)
-
-> **DEF File**  
-> → [spm.def](submission/OpenLane/def/spm.def)
-
-> **RTL**  
-> → [spm.v](submission/RTL/spm.v)
+**Key STA Reports:**
+- [Summary: [31-rcx_sta.summary.rpt](submission/OpenLane/reports/signoff/31-rcx_sta.summary.rpt)
+- Setup: [31-rcx_sta.max.rpt](submission/OpenLane/reports/signoff/31-rcx_sta.max.rpt)
+- Hold: [31-rcx_sta.min.rpt](submission/OpenLane/reports/signoff/31-rcx_sta.min.rpt)
 
 ---
 
-### All Important Signoff Reports
+### 6. Connectivity Verification Check (CVC)
+| Explanation                                               | Screenshot                                              |
+|-----------------------------------------------------------|---------------------------------------------------------|
+| CVC passed – layout netlist matches synthesized netlist   | ![CVC passed](submission/images/cvc_report.png)       |
 
-> | Report Type      | Link |
-> |----------------------|----------------------------------------------------------------|
-> | DRC Report          | [drc.rpt](submission/OpenLane/reports/signoff/drc.rpt) |
-> | STA Summary      | [31-rcx_sta.summary.rpt](submission/OpenLane/reports/signoff/31-rcx_sta.summary.rpt) |
-> | STA Setup            | [31-rcx_sta.max.rpt](submission/images/OpenLane/reports/signoff/31-rcx_sta.max.rpt) |
-> | STA Hold             | [31-rcx_sta.min.rpt](submission/images/OpenLane/reports/signoff/31-rcx_sta.min.rpt) |
-> | CVC Report           | [spm.rpt](submission/OpenLane/reports/signoff/spm.rpt) |
-> | IR Drop (VPWR)       | [32-irdrop-VPWR.rpt](submission/images/OpenLane/reports/signoff/32-irdrop-VPWR.rpt) |
+**CVC Report:** [spm.rpt](submission/OpenLane/reports/signoff/spm.rpt)
 
 ---
 
-**Conclusion**
+### 7. Bonus: Full-Chip Scan using LibreLane
+| Explanation                                               | Full Scan                                               |
+|-----------------------------------------------------------|---------------------------------------------------------|
+| Complete top-level scan of final GDSII scan               | ![LibreLane full scan](submission/images/Complete_librelane_scan.jpg) |
 
-> The `spm` design is **fully verified, timing-clean, and ready for tapeout** using **100% open-source flow on Sky130A PDK.  
-> **DRC = 0** | **Timing Closed** | **CVC Passed** | **GDSII Generated**
+---
 
-**Thank you VSD Team & Open-Source EDA Community!**
+### 8. Final Tapeout-Ready Files
+| Deliverable                    | Direct Link                                                                 |
+|-------------------------------|-----------------------------------------------------------------------------|
+| Final GDSII (fabrication ready) | [spm.gds](submission/OpenLane/gds/spm.gds)                                  |
+| Final DEF                       | [spm.def](submission/OpenLane/def/spm.def)                                  |
+| RTL Source                      | [spm.v](submission/RTL/spm.v)                                               |
 
-**Submitted by Kiran Kumar Siripurapu**  
-**November 29, 29, 2025**
+---
+
+### 9. All Signoff Reports – Quick Access
+| Report Name               | Link                                                                                   |
+|---------------------------|----------------------------------------------------------------------------------------|
+| DRC Report                | [drc.rpt](submission/OpenLane/reports/signoff/drc.rpt)                                 |
+| STA Summary               | [31-rcx_sta.summary.rpt](submission/OpenLane/reports/signoff/31-rcx_sta.summary.rpt)   |
+| STA Setup Report          | [31-rcx_sta.max.rpt](submission/OpenLane/reports/signoff/31-rcx_sta.max.rpt)           |
+| STA Hold Report           | [31-rcx_sta.min.rpt](submission/OpenLane/reports/signoff/31-rcx_sta.min.rpt)           |
+| CVC Report                | [spm.rpt](submission/OpenLane/reports/signoff/spm.rpt)                                 |
+| IR Drop Report (VPWR)     | [32-irdrop-VPWR.rpt](submission/OpenLane/reports/signoff/32-irdrop-VPWR.rpt)           |
+
+---
+
+### Conclusion  
+The `spm` design has been successfully taken through a **complete open-source ASIC flow** using OpenLane and Sky130 PDK.  
+
+**All signoff criteria fully satisfied:**  
+**DRC Clean (0 errors)**  
+**Timing Closed (Setup & Hold met)**  
+**CVC Passed**  
+**Tapeout-ready GDSII generated**
+
+**Thank you** to the VSD team and the entire open-source EDA community!
+
+**Submitted by:** Kiran Kumar Siripurapu  
+**Date:** 29 November 2025
