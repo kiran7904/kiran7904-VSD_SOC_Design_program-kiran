@@ -19,6 +19,8 @@
 
 | **Magic console loading ALU + initial load** | ![Magic console loading](submission/images/Magic%20console%20loading%20ALU%20+%20initial%20load.png) |
 |------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| **Magic console loading ALU + initial DRC report** | ![Magic console loading](submission/images/Magic%20console%20loading%20ALU%20+%20initial%20DRC%20report.png) |
+
 
 | **OpenLane run reports directory view** | ![OpenLane reports directory](submission/images/OpenLane%20run%20reports%20directory%20view.png) |
 |----------------------------------------|----------------------------------------------------------------------------------------------------|
