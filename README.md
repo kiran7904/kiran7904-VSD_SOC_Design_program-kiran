@@ -285,3 +285,23 @@ Below are direct links to all major reports and output files for easy navigation
 
 Thanks to the VSD Open-Source team for providing training, tools, and guidance.
 
+### Custom ALU layout (zoomed-out view)
+![Custom ALU layout](images/Custom_ALU_layout_(zoomed-out_view).png)
+
+### Magic console loading ALU + initial load
+![Magic console loading](images/Magic_console_loading_ALU_+_initial_load.png)
+
+### Extraction log + simple_alu layout (side-by-side)
+![Extraction + Layout](images/Extraction_log_+_simple_alu_layout_(side-by-side).png)
+
+### OpenLane run reports directory view
+![OpenLane reports directory](images/OpenLane_run_reports_directory_view.png)
+
+### Magic layout showing 144 initial DRC errors
+![Magic DRC 144](images/Magic_layout_initial_DRC_144.png)
+
+### Magic extraction log window
+![Magic extraction log](images/Magic_extraction_log_window.png)
+
+### Magic layout reload (zoomed)
+![Magic layout reload](images/Magic_layout_reloaded_zoom.png)
