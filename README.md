@@ -16,7 +16,7 @@
 | **Magic layout showing 144 initial DRC errors** | ![Magic DRC 144](submission/images/Magic_layout_initial_DRC_144.png) |
 | **Magic extraction log window** | ![Magic extraction log](submission/images/Magic_extraction_log_window.png) |
 | **Magic layout reload (zoomed)** | ![Magic layout reload](submission/images/Magic_layout_reloaded_zoom.png) |
-
+* **Screenshot:** ![TKCON DRC Check](submission/images/tkcon_drc_check.png)
 ---
 
 ## 📘 Project Overview
