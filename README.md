@@ -1,25 +1,4 @@
 # 💾 Digital VLSI SoC Design and Planning – Final Project Report
-| **Custom ALU layout (zoomed-out view)** | ![Custom ALU layout](Custom%20ALU%20layout%20(zoomed-out%20view).png) |
-|----------------------------------------|------------------------------------------------------------------------|
-
-| **Magic console loading ALU + initial load** | ![Magic console loading](Magic%20console%20loading%20ALU%20+%20initial%20load.png) |
-|----------------------------------------------|---------------------------------------------------------------------------------------|
-
-| **Extraction log + simple_alu layout (side-by-side)** | ![Extraction + Layout](Extraction%20log%20+%20simple_alu%20layout%20(side-by-side).png) |
-|--------------------------------------------------------|------------------------------------------------------------------------------------------------|
-
-| **OpenLane run reports directory view** | ![OpenLane reports directory](OpenLane%20run%20reports%20directory%20view.png) |
-|----------------------------------------|--------------------------------------------------------------------------------|
-
-| **Magic layout showing 144 initial DRC errors** | ![Magic DRC 144](Magic%20layout_initial%20DRC_144.png) |
-|------------------------------------------------|----------------------------------------------------------|
-
-| **Magic extraction log window** | ![Magic extraction log](Magic%20extraction%20log%20window.png) |
-|--------------------------------|------------------------------------------------------------------|
-
-| **Magic layout reload (zoomed)** | ![Magic layout reload](Magic%20layout%20reloaded%20zoom.png) |
-|----------------------------------|----------------------------------------------------------------|
-
 ## ⚙️ Design Details
 | Attribute | Value |
 | :--- | :--- |
