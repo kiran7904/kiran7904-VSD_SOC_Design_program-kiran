@@ -1,114 +1,110 @@
-# Digital VLSI SoC Design and Planning – Final Project Report  
-**Design Name:** `spm` – Small Processing Module  
+# Digital VLSI SoC – RISC-V Full Flow Documentation  
+**Design Name:** `riscv_soc` – RISC-V Based System-on-Chip  
 **Author:** Kiran Kumar Siripurapu  
 **PDK:** Skywater 130nm (sky130A)  
-**Tool Flow:** OpenLane 2 – Complete RTL to GDSII  
-**Environment:** GitHub Codespaces  
+**Tool Flow:** GCC (RISC-V), objdump, Yosys, OpenLane/Qflow, Magic VLSI  
+**Environment:** Linux / WSL  
 
-**Final Signoff:** DRC = 0 Errors | STA = Timing Met | CVC = Passed | GDSII Ready  
-
----
-
-### 1. RTL Source File
-| Explanation                                      | File / View                                      |
-|--------------------------------------------------|--------------------------------------------------|
-| Original Verilog RTL used without any changes    | [submission/RTL/spm.v](submission/RTL/spm.v)     |
+**Final Output:** Layout Generated | RTL Verified | ISA Verified | Ready for Signoff
 
 ---
 
-### 2. OpenLane Reports Directory Structure
-| Explanation                                               | Screenshot                                              |
-|-----------------------------------------------------------|---------------------------------------------------------|
-| Complete OpenLane run reports directory after successful flow | ![OpenLane reports directory](submission/images/OpenLane%20run%20reports%20directory%20view.png) |
+### 1. C Program (Application Source)
+| Explanation | Screenshot |
+|------------|------------|
+| C code used as the starting point of the flow | ![C code](submission/images/c_code.png) |
 
 ---
 
-### 3. Final Layout Views in Magic VLSI
-| Explanation                                               | Layout Screenshot                                       |
-|-----------------------------------------------------------|---------------------------------------------------------|
-| Full final chip layout after routing                      | ![Full Layout](submission/images/magic_layout_full.png) |
-| Zoomed-out view of entire die                             | ![Zoomed-out](submission/images/magic_layout_full_zoom.png) |
-| Close-up view of standard cells and routing               | ![Standard cell zoom](submission/images/magic_layout_zoom.png) |
-| Custom ALU block layout (zoomed-out)                      | ![Custom ALU](submission/images/Custom%20ALU%20layout%20(zoomed-out%20view).png) |
-| Parasitic extraction log + simple ALU layout side-by-side | ![Extraction + ALU](submission/images/Extraction%20log%20+%20simple_alu%20layout%20(Magic%20side-by-side).png) |
+### 2. RISC-V Compiler Output  
+| Explanation | Screenshot |
+|------------|------------|
+| RISC-V GCC compiling the C code | ![Compiler output](submission/images/compiler_output.png) |
+| Assembly (ISA) dump using `objdump` | ![ISA dump](submission/images/isa_dump.png) |
 
 ---
 
-### 4. Design Rule Check (DRC) – Magic VLSI  
-**Result: 0 Violations → DRC Clean**
-
-| Explanation                                               | Screenshot                                              |
-|-----------------------------------------------------------|---------------------------------------------------------|
-| Magic DRC menu opened                                     | ![DRC menu](submission/images/magic_drc_menu.png)       |
-| DRC executed in tkcon console – showing 0 errors          | ![DRC 0 errors](submission/images/tkcon_drc_check.png)  |
-| Final confirmation: Zero DRC violations                   | ![Zero DRC](submission/images/zero_drc.png)             |
-
-**DRC Report:** [drc.rpt](submission/OpenLane/reports/signoff/drc.rpt)
+### 3. RTL and Architecture Mapping  
+| Explanation | Screenshot |
+|------------|------------|
+| RISC-V instructions mapped to RTL (picorv32) | ![RTL mapping](submission/images/rtl_mapping.png) |
+| RTL hierarchy and modules used in SoC | ![RTL hierarchy](submission/images/rtl_hierarchy.png) |
 
 ---
 
-### 5. Static Timing Analysis (STA) – OpenSTA  
-**Result: Setup & Hold Met – Positive Slack**
-
-| Explanation                                               | Screenshot / Report                                     |
-|-----------------------------------------------------------|---------------------------------------------------------|
-| Terminal output showing positive setup & hold slack       | ![STA positive slack](submission/images/sta_summary_terminal-slack.png) |
-| STA summary report file content                           | ![STA file](submission/images/sta_summary_file.png)     |
-
-**Key STA Reports:**
-- [Summary: [31-rcx_sta.summary.rpt](submission/OpenLane/reports/signoff/31-rcx_sta.summary.rpt)
-- Setup: [31-rcx_sta.max.rpt](submission/OpenLane/reports/signoff/31-rcx_sta.max.rpt)
-- Hold: [31-rcx_sta.min.rpt](submission/OpenLane/reports/signoff/31-rcx_sta.min.rpt)
+### 4. Synthesis Output  
+| Explanation | Screenshot |
+|------------|------------|
+| Yosys synthesis result showing cell statistics | ![Synthesis stats](submission/images/synthesis_stats.png) |
+| Netlist generated after synthesis | ![Netlist](submission/images/netlist_view.png) |
 
 ---
 
-### 6. Connectivity Verification Check (CVC)
-| Explanation                                               | Screenshot                                              |
-|-----------------------------------------------------------|---------------------------------------------------------|
-| CVC passed – layout netlist matches synthesized netlist   | ![CVC passed](submission/images/cvc_report.png)       |
-
-**CVC Report:** [spm.rpt](submission/OpenLane/reports/signoff/spm.rpt)
-
----
-
-### 7. Bonus: Full-Chip Scan using LibreLane
-| Explanation                                               | Full Scan                                               |
-|-----------------------------------------------------------|---------------------------------------------------------|
-| Complete top-level scan of final GDSII scan               | ![LibreLane full scan](submission/images/Complete_librelane_scan.jpg) |
+### 5. Floorplanning  
+| Explanation | Screenshot |
+|------------|------------|
+| Initial floorplan generation | ![Floorplan](submission/images/floorplan.png) |
+| Power planning (straps, rails, rings) | ![Power plan](submission/images/power_plan.png) |
 
 ---
 
-### 8. Final Tapeout-Ready Files
-| Deliverable                    | Direct Link                                                                 |
-|-------------------------------|-----------------------------------------------------------------------------|
-| Final GDSII (fabrication ready) | [spm.gds](submission/OpenLane/gds/spm.gds)                                  |
-| Final DEF                       | [spm.def](submission/OpenLane/def/spm.def)                                  |
-| RTL Source                      | [spm.v](submission/RTL/spm.v)                                               |
+### 6. Placement  
+| Explanation | Screenshot |
+|------------|------------|
+| Standard cell global placement | ![Global placement](submission/images/global_placement.png) |
+| Detailed placement completed | ![Detailed placement](submission/images/detailed_placement.png) |
 
 ---
 
-### 9. All Signoff Reports – Quick Access
-| Report Name               | Link                                                                                   |
-|---------------------------|----------------------------------------------------------------------------------------|
-| DRC Report                | [drc.rpt](submission/OpenLane/reports/signoff/drc.rpt)                                 |
-| STA Summary               | [31-rcx_sta.summary.rpt](submission/OpenLane/reports/signoff/31-rcx_sta.summary.rpt)   |
-| STA Setup Report          | [31-rcx_sta.max.rpt](submission/OpenLane/reports/signoff/31-rcx_sta.max.rpt)           |
-| STA Hold Report           | [31-rcx_sta.min.rpt](submission/OpenLane/reports/signoff/31-rcx_sta.min.rpt)           |
-| CVC Report                | [spm.rpt](submission/OpenLane/reports/signoff/spm.rpt)                                 |
-| IR Drop Report (VPWR)     | [32-irdrop-VPWR.rpt](submission/OpenLane/reports/signoff/32-irdrop-VPWR.rpt)           |
+### 7. Clock Tree Synthesis (CTS)  
+| Explanation | Screenshot |
+|------------|------------|
+| CTS report summary | ![CTS](submission/images/cts_report.png) |
+
+---
+
+### 8. Routing  
+| Explanation | Screenshot |
+|------------|------------|
+| Routed layout (TritonRoute) | ![Routing](submission/images/routing.png) |
+| Congestion-free final routing | ![Routing clean](submission/images/routing_clean.png) |
+
+---
+
+### 9. Final Layout – Magic VLSI  
+| Explanation | Screenshot |
+|------------|------------|
+| Full-chip layout | ![Full layout](submission/images/full_layout.png) |
+| Zoomed view of standard cells | ![Cells](submission/images/cell_zoom.png) |
+| Metal layers + routing visualization | ![Metal layers](submission/images/metal_layers.png) |
+
+---
+
+### 10. Signoff Checks  
+| Explanation | Screenshot |
+|------------|------------|
+| DRC run in Magic | ![DRC](submission/images/drc.png) |
+| STA (Setup & Hold Slack) | ![STA](submission/images/sta.png) |
+| CVC connectivity check | ![CVC](submission/images/cvc.png) |
+
+---
+
+### 11. Final Output Files  
+| Deliverable | File |
+|-------------|------|
+| GDSII | `submission/gds/riscv_soc.gds` |
+| DEF | `submission/def/riscv_soc.def` |
+| Netlist | `submission/netlist/riscv_soc.v` |
+| Reports | `submission/reports/*` |
 
 ---
 
 ### Conclusion  
-The `spm` design has been successfully taken through a **complete open-source ASIC flow** using OpenLane and Sky130 PDK.  
-
-**All signoff criteria fully satisfied:**  
-**DRC Clean (0 errors)**  
-**Timing Closed (Setup & Hold met)**  
-**CVC Passed**  
-**Tapeout-ready GDSII generated**
-
-**Thank you** to the VSD team and the entire open-source EDA community!
+The `riscv_soc` design successfully demonstrates:  
+- Complete software → hardware mapping  
+- RISC-V ISA → RTL correlation  
+- Full open-source synthesis and PnR flow  
+- Clean layout visualization  
+- Ready for signoff verification steps  
 
 **Submitted by:** Kiran Kumar Siripurapu  
-**Date:** 29 November 2025
