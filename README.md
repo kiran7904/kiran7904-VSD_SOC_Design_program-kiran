@@ -150,6 +150,41 @@ Ensures layout = schematic with no mismatches.
 | Explanation | Screenshot |
 |------------|------------|
 | External verification of final GDS | ![](submission/intro/Complete_librelane_scan.jpg) |
+### 13. Static Timing Analysis (STA) – Setup & Hold  
+OpenSTA timing reports confirm that both setup and hold constraints are met with positive slack using post-route extracted parasitics.
+
+---
+
+#### **Hold Timing (min.rpt)**
+| Explanation | Screenshot |
+|------------|------------|
+| Hold-time analysis showing positive slack (no hold violations) | ![](submission/intro/hold_timing_report_min_rpt.png) |
+
+**Hold Timing Details:**  
+- Data required time: **0.566149 ns**  
+- Data arrival time: **-0.891035 ns**  
+- **Slack = +0.325157 ns (MET)**  
+
+---
+
+#### **Setup Timing (max.rpt)**
+| Explanation | Screenshot |
+|------------|------------|
+| Setup-time analysis report showing comfortable positive slack | ![](submission/intro/setup_timing_report_min_rpt.png) |
+
+**Setup Timing Details:**  
+- Data required time: **10.510732 ns**  
+- Data arrival time: **-2.702404 ns**  
+- **Slack = +7.808327 ns (MET)**  
+
+---
+
+### **STA Summary**
+- ✔ **Setup Slack = +7.808 ns (MET)**  
+- ✔ **Hold Slack = +0.325 ns (MET)**  
+- ✔ No timing violations remain after CTS and routing  
+- ✔ Timing closure achieved under Sky130 PDK with RC extraction  
+
 
 ---
 
