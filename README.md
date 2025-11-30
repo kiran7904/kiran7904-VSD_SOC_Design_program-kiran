@@ -1,110 +1,129 @@
-# Digital VLSI SoC – RISC-V Full Flow Documentation  
-**Design Name:** `riscv_soc` – RISC-V Based System-on-Chip  
+# Digital VLSI SoC Design – RISC-V Based SoC Documentation  
+**Design Name:** `riscv_soc` – RISC-V System-on-Chip  
 **Author:** Kiran Kumar Siripurapu  
 **PDK:** Skywater 130nm (sky130A)  
-**Tool Flow:** GCC (RISC-V), objdump, Yosys, OpenLane/Qflow, Magic VLSI  
-**Environment:** Linux / WSL  
+**Tool Flow:** GCC (RISC-V), objdump, Yosys, OpenLane, Magic VLSI  
+**Environment:** GitHub Codespaces / WSL  
 
-**Final Output:** Layout Generated | RTL Verified | ISA Verified | Ready for Signoff
+**Final Status:** DRC Clean | STA Passed | CVC Matched | GDS Generated
 
 ---
 
-### 1. C Program (Application Source)
+### 1. Application → Compiler → RISC-V ISA  
 | Explanation | Screenshot |
 |------------|------------|
-| C code used as the starting point of the flow | ![C code](submission/images/c_code.png) |
+| C program used as input (Application level) | ![](submission/intro/01.png) |
+| RISC-V GCC compilation output | ![](submission/intro/02.png) |
+| RISC-V ISA (assembly) generated using objdump | ![](submission/intro/03.png) |
 
 ---
 
-### 2. RISC-V Compiler Output  
+### 2. RTL Mapping and Architecture  
 | Explanation | Screenshot |
 |------------|------------|
-| RISC-V GCC compiling the C code | ![Compiler output](submission/images/compiler_output.png) |
-| Assembly (ISA) dump using `objdump` | ![ISA dump](submission/images/isa_dump.png) |
+| RISC-V instructions mapped to RTL hardware | ![](submission/intro/04.png) |
+| RTL modules and block-level design | ![](submission/intro/05.png) |
+| RTL block diagram continuation | ![](submission/intro/06.png) |
+| Full RTL architecture view | ![](submission/intro/07.png) |
 
 ---
 
-### 3. RTL and Architecture Mapping  
+### 3. Synthesis – Yosys  
 | Explanation | Screenshot |
 |------------|------------|
-| RISC-V instructions mapped to RTL (picorv32) | ![RTL mapping](submission/images/rtl_mapping.png) |
-| RTL hierarchy and modules used in SoC | ![RTL hierarchy](submission/images/rtl_hierarchy.png) |
+| Synthesis report showing cell statistics | ![](submission/intro/03_synthesis.png) |
 
 ---
 
-### 4. Synthesis Output  
+### 4. Floorplan  
 | Explanation | Screenshot |
 |------------|------------|
-| Yosys synthesis result showing cell statistics | ![Synthesis stats](submission/images/synthesis_stats.png) |
-| Netlist generated after synthesis | ![Netlist](submission/images/netlist_view.png) |
+| Floorplan generated with core area + pins | ![](submission/intro/04_floorplan.png) |
 
 ---
 
-### 5. Floorplanning  
+### 5. Placement  
 | Explanation | Screenshot |
 |------------|------------|
-| Initial floorplan generation | ![Floorplan](submission/images/floorplan.png) |
-| Power planning (straps, rails, rings) | ![Power plan](submission/images/power_plan.png) |
+| Standard cell placement (global + detailed) | ![](submission/intro/05_placement.png) |
 
 ---
 
-### 6. Placement  
+### 6. Clock Tree Synthesis (CTS)  
 | Explanation | Screenshot |
 |------------|------------|
-| Standard cell global placement | ![Global placement](submission/images/global_placement.png) |
-| Detailed placement completed | ![Detailed placement](submission/images/detailed_placement.png) |
+| CTS buffer insertion & clock tree structure | ![](submission/intro/06_cts.png.png) |
 
 ---
 
-### 7. Clock Tree Synthesis (CTS)  
+### 7. Routing  
 | Explanation | Screenshot |
 |------------|------------|
-| CTS report summary | ![CTS](submission/images/cts_report.png) |
+| Final routed layout (TritonRoute) | ![](submission/intro/07_routing.png) |
 
 ---
 
-### 8. Routing  
+### 8. Final GDSII Layout – Magic  
 | Explanation | Screenshot |
 |------------|------------|
-| Routed layout (TritonRoute) | ![Routing](submission/images/routing.png) |
-| Congestion-free final routing | ![Routing clean](submission/images/routing_clean.png) |
+| Full GDS layout | ![](submission/intro/Full final GDS.png) |
+| Zoomed-in layout view | ![](submission/intro/zoom in gds.png) |
+| Standard cell zoom-in | ![](submission/intro/zoomed-in-cells.png) |
 
 ---
 
-### 9. Final Layout – Magic VLSI  
+### 9. Signoff: DRC – Magic  
+**Result: 0 Violations – DRC Clean**
+
 | Explanation | Screenshot |
 |------------|------------|
-| Full-chip layout | ![Full layout](submission/images/full_layout.png) |
-| Zoomed view of standard cells | ![Cells](submission/images/cell_zoom.png) |
-| Metal layers + routing visualization | ![Metal layers](submission/images/metal_layers.png) |
+| Magic DRC clean result | ![](submission/intro/magic_drc_clean.png) |
 
 ---
 
-### 10. Signoff Checks  
+### 10. Connectivity Verification (CVC)  
 | Explanation | Screenshot |
 |------------|------------|
-| DRC run in Magic | ![DRC](submission/images/drc.png) |
-| STA (Setup & Hold Slack) | ![STA](submission/images/sta.png) |
-| CVC connectivity check | ![CVC](submission/images/cvc.png) |
+| CVC connectivity match report | ![](submission/intro/CVC_report.png) |
+| Additional CVC output | ![](submission/intro/CVC report.png) |
 
 ---
 
-### 11. Final Output Files  
-| Deliverable | File |
-|-------------|------|
+### 11. LVS Report  
+| Explanation | Screenshot |
+|------------|------------|
+| Layout vs Schematic (Netgen) report | ![](submission/intro/lvs_report.png) |
+
+---
+
+### 12. Full-Chip LibreLane Scan  
+| Explanation | Screenshot |
+|------------|------------|
+| Complete scan of GDS using LibreLane | ![](submission/intro/Complete_librelane_scan.jpg) |
+
+---
+
+### Final Deliverables  
+| File | Location |
+|------|----------|
 | GDSII | `submission/gds/riscv_soc.gds` |
 | DEF | `submission/def/riscv_soc.def` |
-| Netlist | `submission/netlist/riscv_soc.v` |
+| Synthesized Netlist | `submission/netlist/riscv_soc.v` |
 | Reports | `submission/reports/*` |
 
 ---
 
 ### Conclusion  
-The `riscv_soc` design successfully demonstrates:  
-- Complete software → hardware mapping  
-- RISC-V ISA → RTL correlation  
-- Full open-source synthesis and PnR flow  
-- Clean layout visualization  
-- Ready for signoff verification steps  
+The `riscv_soc` design has been fully processed through an open-source VLSI flow:  
+- C → RISC-V ISA → RTL  
+- RTL → Synthesis  
+- Synthesis → PnR  
+- PnR → Signoff  
+- GDSII generated successfully  
+
+**All checks passed:**  
+- **DRC Clean**  
+- **STA Met**  
+- **CVC Verified**  
 
 **Submitted by:** Kiran Kumar Siripurapu  
